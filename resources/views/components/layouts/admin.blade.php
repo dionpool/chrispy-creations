@@ -15,6 +15,8 @@
     </title>
 
     @vite(['public/css/plugins.bundle.css', 'public/css/style.bundle.css', 'public/css/admin.css'])
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
 </head>
 <body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true"
       data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true"
@@ -35,6 +37,9 @@
                         <div id="kt_app_content" class="app-content flex-column-fluid">
                             <div id="kt_app_content_container" class="app-container container-fluid">
                                 {{ $slot }}
+
+                                <!-- Alert -->
+                                <x-alert />
                             </div>
                         </div>
                     </div>
