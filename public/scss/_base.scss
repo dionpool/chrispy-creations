@@ -1,0 +1,115 @@
+/*==================================
+ * Reset
+ *=================================*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    line-height: $lineHeight;
+}
+
+a, a:focus, a:hover {
+    text-decoration: none;
+}
+
+a {
+    color: $black;
+}
+
+a:focus, a:hover {
+    color: $black;
+}
+
+img, picture, video, canvas, svg {
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#root, #__next {
+    isolation: isolate;
+}
+
+
+/*==================================
+ * Typography
+ *=================================*/
+h1 {
+    font-size: $h1Size;
+}
+
+h2 {
+    font-size: $h2Size;
+}
+
+h3 {
+    font-size: $h3Size;
+}
+
+h4 {
+    font-size: $h4Size;
+}
+
+h5 {
+    font-size: $h5Size;
+}
+
+h6 {
+    font-size: $h6Size;
+}
+
+
+/*==================================
+ * General
+ *=================================*/
+* {
+    font-family: $font;
+    font-size: $fontSize;
+}
+
+html, body {
+    background-color: $white;
+}
+
+.container {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: $tablet) {
+    .container {
+        width: 100%;
+        max-width: 786px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: $desktop) {
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}

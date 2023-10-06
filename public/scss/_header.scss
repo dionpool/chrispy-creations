@@ -1,0 +1,157 @@
+/*==================================
+ * Top bar
+ *=================================*/
+.top-bar {
+    border-bottom: 1px solid #ddd;
+    .top-bar-content {
+        .header-mobile-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            span {
+                font-size: 14px;
+            }
+            .account-navigation {
+                li:first-child {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+
+/*==================================
+ * Navigation bar
+ *=================================*/
+.navigation-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 25px 0 0;
+    background-color: $white;
+    border-bottom: 1px solid #ddd;
+    .logo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-left: 54px;
+        img {
+            width: 135px;
+        }
+    }
+    .toggle-menu {
+        background: none;
+        border: none;
+        i {
+            font-size: 1.5rem;
+        }
+    }
+    .mobile-navigation {
+        position: absolute;
+        top: 121px;
+        left: 0;
+        background-color: $white;
+        width: 100%;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        transition: top .2s ease-in-out;
+        z-index: 1;
+        li {
+            border-bottom: 1px solid #ddd;
+            a {
+                font-size: 14px;
+                text-transform: uppercase;
+                padding: 14px 25px;
+                display: block;
+                &:active, &.active {
+                    background-color: $primaryColor;
+                    color: $white;
+                }
+            }
+        }
+    }
+    .primary-navigation {
+        display: none;
+    }
+}
+
+
+/*==================================
+ * Responsive: Desktop
+ *=================================*/
+@media screen and (min-width: 1024px) {
+    /* Top bar */
+    .top-bar-content {
+        width: 1200px;
+        margin: 0 auto;
+        background-color: $white;
+        .account-navigation {
+            display: flex;
+            gap: 25px;
+            li {
+                a {
+                    font-size: 14px;
+                    &:hover {
+                        color: $primaryColor;
+                    }
+                }
+                &:first-child {
+                    display: block !important;
+                }
+                .btn-logout {
+                    cursor: pointer;
+                    &:hover {
+                        color: $primaryColor;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Primary navigation */
+    .navigation-bar {
+        padding: 10px 35px;
+        .logo {
+            display: none;
+        }
+        .toggle-menu {
+            display: none;
+        }
+        .mobile-navigation {
+            display: none;
+        }
+        .primary-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 1200px;
+            margin: 0 auto;
+            height: 75px;
+            li {
+                position: relative;
+                a {
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    color: $black;
+                    &:not(.logo):active:after,
+                    &:not(.logo).active:after,
+                    &:not(.logo):hover:after {
+                        content: "";
+                        position: absolute;
+                        top: 35px;
+                        left: 50%;
+                        width: 50%;
+                        height: 2px;
+                        background-color: $black;
+                        transform: translateX(-50%);
+                        transition: opacity .3s, transform .3s;
+                    }
+                }
+                .logo {
+                    display: block;
+                }
+            }
+        }
+    }
+}

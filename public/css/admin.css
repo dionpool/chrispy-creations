@@ -1,0 +1,25 @@
+.table {
+    min-width: 1000px;
+}
+
+.excerpt {
+    display: block;
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    width: 100%;
+}
+
+.btn-link:hover {
+    background-color: var(--bs-primary-light);
+}
+
+.modal-confirm i {
+    font-size: 72px;
+}
