@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -57,17 +58,24 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        return view('admin.categories.edit', [
+            'category' => Category::find($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->update(['title' => $request->input('title')]);
+        $category->slug = null;
+
+        return redirect(route('categories'))->with('success', 'De categorie is succesvol aangepast!');
     }
 
     /**

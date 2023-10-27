@@ -26,7 +26,7 @@
                                 <x-slot name="trigger">Acties</x-slot>
 
                                 <x-dropdown-item>
-                                    <a href="#" class="menu-link px-3">Bewerken</a>
+                                    <a href="{{ route('category.edit', $category->id) }}" class="menu-link px-3">Bewerken</a>
                                 </x-dropdown-item>
 
                                 <x-dropdown-item>

@@ -60,8 +60,13 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
 
     // Categories
     Route::get('/categorieen', [CategoryController::class, 'index'])->name('categories');
+
     Route::get('/nieuwe-categorie', [CategoryController::class, 'create'])->name('category.new');
     Route::post('/nieuwe-categorie', [CategoryController::class, 'store'])->name('category.store');
+
+    Route::get('/categorieen/{id}/bewerken', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/categorieen/{id}/bewerken', [CategoryController::class, 'update'])->name('category.update');
+
     Route::delete('/categorieen/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
