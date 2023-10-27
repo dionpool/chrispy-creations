@@ -1,6 +1,7 @@
 <?php
 
-use Diglactic\Breadcrumbs\Breadcrumbs;
+    use App\Models\Category;
+    use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 // Dashboard
