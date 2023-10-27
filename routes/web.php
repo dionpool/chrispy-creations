@@ -25,9 +25,12 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::middleware(['guest'])->group(function () {
-    // Register
-    Route::get('/registreren', [RegisterController::class, 'index'])->name('register');
-    Route::post('/registreren', [RegisterController::class, 'store'])->name('register.store');
+    // Register - Disabled
+    Route::get('/registreren', function () {
+        return redirect('/');
+    });
+    // Route::get('/registreren', [RegisterController::class, 'index'])->name('register');
+    // Route::post('/registreren', [RegisterController::class, 'store'])->name('register.store');
 
     // Login
     Route::get('/inloggen', [LoginController::class, 'index'])->name('login');
