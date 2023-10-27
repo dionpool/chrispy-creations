@@ -17,8 +17,10 @@
 
         <x-button variant="auth">Inloggen</x-button>
 
-        <div class="register-link">
-            Nog geen account? <a href="{{ route('register') }}">Registreer</a>.
-        </div>
+        @if(Route::has('register'))
+            <div class="register-link">
+                Nog geen account? <a href="{{ route('register') }}">Registreer</a>.
+            </div>
+        @endif
     </form>
 </x-layouts.guest>
