@@ -86,5 +86,6 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/over', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::get('/shop', [PageController::class, 'shop'])->name('shop');
+Route::get('/store', [PageController::class, 'shop'])->name('store');
+
 Route::get('/projects/{project:slug}', [ProjectController::class, 'show'])->name('project.single');

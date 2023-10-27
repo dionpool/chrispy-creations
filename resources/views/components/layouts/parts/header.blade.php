@@ -33,10 +33,10 @@
             <x-layouts.parts.nav-link :route="route('about')" :active="request()->routeIs('about')">
                 Over
             </x-layouts.parts.nav-link>
-            <x-layouts.parts.nav-link>
+            <x-layouts.parts.nav-link :route="route('contact')" :active="request()->routeIs('contact')">
                 Contact
             </x-layouts.parts.nav-link>
-            <x-layouts.parts.nav-link>
+            <x-layouts.parts.nav-link :route="route('store')" :active="request()->routeIs('store')">
                 Store
             </x-layouts.parts.nav-link>
         </ul>
@@ -54,7 +54,7 @@
             <x-layouts.parts.nav-link :route="route('contact')" :active="request()->routeIs('contact')">
                 Contact
             </x-layouts.parts.nav-link>
-            <x-layouts.parts.nav-link :route="route('shop')" :active="request()->routeIs('shop')">
+            <x-layouts.parts.nav-link :route="route('store')" :active="request()->routeIs('store')">
                 Store
             </x-layouts.parts.nav-link>
         </ul>
