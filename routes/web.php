@@ -54,8 +54,13 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
 
     // Projects
     Route::get('/projecten', [ProjectController::class, 'index'])->name('projects');
+
     Route::get('/nieuw-project', [ProjectController::class, 'create'])->name('project.new');
     Route::post('/nieuw-project', [ProjectController::class, 'store'])->name('project.store');
+
+    Route::get('/projecten/{id}/bewerken', [ProjectController::class, 'edit'])->name('project.edit');
+    Route::put('/projecten/{id}/bewerken', [ProjectController::class, 'update'])->name('project.update');
+
     Route::delete('/projecten/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
     // Categories

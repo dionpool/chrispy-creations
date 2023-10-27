@@ -67,11 +67,11 @@
                                 <x-slot name="trigger">Acties</x-slot>
 
                                 <x-dropdown-item>
-                                    <a href="{{ route('project.single', $project->slug) }}" class="menu-link px-3">Bekijken</a>
+                                    <a href="{{ route('project.single', $project->slug) }}" class="menu-link px-3" target="_blank">Bekijken</a>
                                 </x-dropdown-item>
 
                                 <x-dropdown-item>
-                                    <a href="#" class="menu-link px-3">Bewerken</a>
+                                    <a href="{{ route('project.edit', $project->id) }}" class="menu-link px-3">Bewerken</a>
                                 </x-dropdown-item>
 
                                 <x-dropdown-item>

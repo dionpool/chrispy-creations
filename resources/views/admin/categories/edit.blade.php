@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <x-button variant="primary">Bewerken</x-button>
+                    <x-button variant="primary">Bijwerken</x-button>
                 </div>
             </div>
         </form>
