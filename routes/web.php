@@ -25,9 +25,12 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::middleware(['guest'])->group(function () {
-    // Register
-    Route::get('/registreren', [RegisterController::class, 'index'])->name('register');
-    Route::post('/registreren', [RegisterController::class, 'store'])->name('register.store');
+    // Register - Disabled
+    Route::get('/registreren', function () {
+        return redirect('/');
+    });
+    // Route::get('/registreren', [RegisterController::class, 'index'])->name('register');
+    // Route::post('/registreren', [RegisterController::class, 'store'])->name('register.store');
 
     // Login
     Route::get('/inloggen', [LoginController::class, 'index'])->name('login');
@@ -54,14 +57,24 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
 
     // Projects
     Route::get('/projecten', [ProjectController::class, 'index'])->name('projects');
+
     Route::get('/nieuw-project', [ProjectController::class, 'create'])->name('project.new');
     Route::post('/nieuw-project', [ProjectController::class, 'store'])->name('project.store');
+
+    Route::get('/projecten/{id}/bewerken', [ProjectController::class, 'edit'])->name('project.edit');
+    Route::put('/projecten/{id}/bewerken', [ProjectController::class, 'update'])->name('project.update');
+
     Route::delete('/projecten/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
     // Categories
     Route::get('/categorieen', [CategoryController::class, 'index'])->name('categories');
+
     Route::get('/nieuwe-categorie', [CategoryController::class, 'create'])->name('category.new');
     Route::post('/nieuwe-categorie', [CategoryController::class, 'store'])->name('category.store');
+
+    Route::get('/categorieen/{id}/bewerken', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/categorieen/{id}/bewerken', [CategoryController::class, 'update'])->name('category.update');
+
     Route::delete('/categorieen/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
@@ -73,5 +86,6 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/over', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::get('/shop', [PageController::class, 'shop'])->name('shop');
+Route::get('/store', [PageController::class, 'shop'])->name('store');
+
 Route::get('/projects/{project:slug}', [ProjectController::class, 'show'])->name('project.single');

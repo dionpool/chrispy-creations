@@ -15,6 +15,7 @@
     color: $white;
     cursor: pointer;
     transition: opacity .2s ease;
+
     &:hover {
         opacity: .9;
     }
@@ -51,16 +52,19 @@
 .swiper {
     width: 100%;
     overflow-y: visible;
+
     .swiper-wrapper {
         .swiper-slide img {
             min-height: 400px;
             object-fit: cover;
         }
     }
+
     .swiper-pagination {
         position: absolute;
         bottom: -25px;
         background-color: transparent;
+
         .swiper-pagination-bullet {
             background-color: $gray;
             opacity: 1;
@@ -68,11 +72,13 @@
             width: 12px;
             height: 12px;
         }
+
         .swiper-pagination-bullet-active {
             background-color: #888;
             opacity: 1;
         }
     }
+
     .swiper-button-prev, .swiper-button-next {
         display: none;
     }
@@ -95,21 +101,27 @@
 @media screen and (min-width: $desktop) {
     .swiper {
         width: 75%;
+
         .swiper-slide {
             display: flex;
             justify-content: center;
+
             img {
                 height: 750px;
             }
         }
+
         .swiper-pagination {
             bottom: -50px;
         }
+
         .swiper-button-prev, .swiper-button-next {
             display: block;
+
             &::after {
                 color: $gray;
             }
+
             &:hover::after {
                 color: $primaryColor;
             }
@@ -141,8 +153,10 @@
         width: 100vw;
         height: 100vh;
     }
+
     .modal-show {
         visibility: visible;
+
         ~ {
             .info-modal-overlay {
                 opacity: 1;
@@ -150,6 +164,7 @@
             }
         }
     }
+
     .modal-close {
         position: absolute;
         top: 50px;
@@ -163,11 +178,13 @@
         width: 35px;
         height: 35px;
         cursor: pointer;
+
         &:hover {
             background-color: $primaryColor;
             color: $white;
         }
     }
+
     .info-modal-overlay {
         position: fixed;
         width: 100%;
@@ -180,6 +197,7 @@
         background-color: $white;
         transition: all 0.3s;
     }
+
     .modal-effect {
         .modal-content {
             opacity: 0;
@@ -187,19 +205,23 @@
             background: transparent;
         }
     }
+
     .modal-show.modal-effect {
         ~ {
             .info-modal-overlay {
                 background-color: $white;
             }
         }
+
         .modal-content {
             opacity: 1;
             width: 100%;
             text-align: center;
+
             .description {
                 display: flex;
                 justify-content: center;
+
                 p {
                     font-size: 28px;
                     line-height: 38px;

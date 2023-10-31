@@ -88,17 +88,75 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit($id)
     {
-        //
+        return view('admin.projects.edit', [
+            'project' => Project::find($id),
+            'categories' => Category::all(),
+            'category' => Category::find($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $id)
     {
-        //
+        $attributes = $request->validate([
+            'title'         => ['required'],
+            'category'      => ['required'],
+            'description'   => ['required'],
+            'thumbnail'     => ['nullable', 'image'], // Make thumbnail optional for update
+            'size'          => ['required', 'in:big,small'],
+            'status'        => ['required', 'in:published,concept,hidden'],
+            'image.*'       => ['required', 'image']
+        ]);
+
+        $attributes['user_id'] = auth()->id();
+
+        // Fetch the existing project by ID
+        $project = Project::findOrFail($id);
+
+        // Update project attributes
+        $project->update([
+            'title'         => $attributes['title'],
+            'category_id'   => $attributes['category'],
+            'description'   => $attributes['description'],
+            'size'          => $attributes['size'],
+            'status'        => $attributes['status']
+            // Add other fields to update if needed
+        ]);
+
+        // Handle thumbnail update if provided
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $originalName = $thumbnail->getClientOriginalName();
+            $attributes['thumbnail'] = $thumbnail->storeAs('images/thumbnails', $originalName, 'public');
+            $project->update(['thumbnail' => $attributes['thumbnail']]);
+        }
+
+        // Handle project images
+        $projectImages = [];
+
+        if ($request->hasFile('images') && $request->file('images') !== null) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('images/projects', 'public');
+                $projectImages[] = ['image' => $imagePath];
+            }
+        }
+
+// Check if the project already has images
+        if ($project->images->count() > 0) {
+            // If it does, update the existing images
+            foreach ($projectImages as $newImage) {
+                $project->images()->updateOrCreate(['image' => $newImage['image']], $newImage);
+            }
+        } else {
+            // If it doesn't, create new images
+            $project->images()->createMany($projectImages);
+        }
+
+        return redirect(route('projects'))->with('success', 'Je project is succesvol bijgewerkt.');
     }
 
     /**
