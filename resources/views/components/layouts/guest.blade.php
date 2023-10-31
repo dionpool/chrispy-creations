@@ -14,7 +14,7 @@
         @endisset
     </title>
 
-    @vite(['public/css/style.css'])
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body class="guest-layout">
     <main class="app-root">

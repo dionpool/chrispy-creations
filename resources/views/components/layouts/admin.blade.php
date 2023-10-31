@@ -14,7 +14,9 @@
         @endisset
     </title>
 
-    @vite(['public/css/plugins.bundle.css', 'public/css/style.bundle.css', 'public/css/admin.css'])
+    <link rel="stylesheet" href="{{ asset('css/plugins.bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
 </head>
