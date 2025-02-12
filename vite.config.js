@@ -6,7 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 // App default
-                'public/css/app.css',
+                'public/css/style.css',
                 'public/js/app.js',
 
                 // Admin dashboard
