@@ -3,15 +3,15 @@
         {{ Breadcrumbs::render('projects') }}
     @endsection
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form method="POST" action="{{ route('project.update', $project->id) }}" enctype="multipart/form-data">
         @csrf
@@ -46,7 +46,15 @@
 
                     <div class="mb-7">
                         <label for="images" class="mb-1">Carousel afbeeldingen:</label>
-                        <input type="file" name="images[]" id="images" class="form-control" multiple>
+                        <input type="file" name="images[]" id="images" class="form-control" multiple >
+
+                        @if($project->images)
+                            @foreach($project->images as $image)
+                                <div class="symbol symbol-100px symbol-lg-120 mt-4">
+                                    <img src="/storage/{{ $image->image }}" alt="">
+                                </div>
+                            @endforeach
+                        @endif
 
                         @error('images[]') {{ $message }} @enderror
                     </div>
@@ -63,6 +71,12 @@
                     <div class="mb-7">
                         <label for="thumbnail" class="mb-1">Thumbnail:</label>
                         <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+
+                        @if($project->thumbnail)
+                            <div class="symbol symbol-100px symbol-lg-120 mt-4">
+                                <img src="/storage/{{ $project->thumbnail }}" alt="">
+                            </div>
+                        @endif
 
                         @error('thumbnail') {{ $message }} @enderror
                     </div>
