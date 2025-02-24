@@ -48,6 +48,35 @@
                         <label for="images" class="mb-1">Carousel afbeeldingen:</label>
                         <input type="file" name="images[]" id="images" class="form-control" multiple>
 
+                        @if($project->images)
+                            <table class="table w-500px mt-5 table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Afbeelding</th>
+                                        <th scope="col">Actie</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($project->images as $image)
+                                        <tr>
+                                            <th scope="row">{{ $image->id }}</th>
+                                            <td>
+                                                <div class="symbol symbol-75px">
+                                                    <img src="/storage/{{ $image->image }}" alt="">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-danger">
+                                                    Verwijder
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+
                         @error('images[]') {{ $message }} @enderror
                     </div>
                 </x-admin.card>
@@ -63,6 +92,12 @@
                     <div class="mb-7">
                         <label for="thumbnail" class="mb-1">Thumbnail:</label>
                         <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+
+                        @if($project->thumbnail)
+                            <div class="symbol symbol-125px mt-5">
+                                <img src="/storage/{{ $project->thumbnail }}" alt="{{ $project->title }}">
+                            </div>
+                        @endif
 
                         @error('thumbnail') {{ $message }} @enderror
                     </div>
