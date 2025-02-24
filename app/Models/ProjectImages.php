@@ -10,7 +10,8 @@ class ProjectImages extends Model
     use HasFactory;
 
     protected $fillable = [
-        'image'
+        'image',
+        'order'
     ];
 
     public function project()

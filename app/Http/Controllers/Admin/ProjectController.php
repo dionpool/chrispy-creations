@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
@@ -37,13 +38,13 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'title'         => ['required', Rule::unique('projects', 'title')],
-            'category'      => ['required'],
-            'description'   => ['required'],
-            'thumbnail'     => ['required', 'image'],
-            'size'          => ['required', 'in:big,small'],
-            'status'        => ['required', 'in:published,concept,hidden'],
-            'image.*'       => ['required', 'image']
+            'title' => ['required', Rule::unique('projects', 'title')],
+            'category' => ['required'],
+            'description' => ['required'],
+            'thumbnail' => ['required', 'image'],
+            'size' => ['required', 'in:big,small'],
+            'status' => ['required', 'in:published,concept,hidden'],
+            'image.*' => ['required', 'image']
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -53,13 +54,13 @@ class ProjectController extends Controller
         $attributes['thumbnail'] = $thumbnail->storeAs('images/thumbnails', $originalName, 'public');
 
         $project = Project::create([
-            'user_id'       => $attributes['user_id'],
-            'title'         => $attributes['title'],
-            'category_id'   => $attributes['category'],
-            'description'   => $attributes['description'],
-            'thumbnail'     => $attributes['thumbnail'],
-            'size'          => $attributes['size'],
-            'status'        => $attributes['status']
+            'user_id' => $attributes['user_id'],
+            'title' => $attributes['title'],
+            'category_id' => $attributes['category'],
+            'description' => $attributes['description'],
+            'thumbnail' => $attributes['thumbnail'],
+            'size' => $attributes['size'],
+            'status' => $attributes['status']
         ]);
 
         $projectImages = [];
@@ -103,13 +104,13 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         $attributes = $request->validate([
-            'title'         => ['required'],
-            'category'      => ['required'],
-            'description'   => ['required'],
-            'thumbnail'     => ['nullable', 'image'], // Make thumbnail optional for update
-            'size'          => ['required', 'in:big,small'],
-            'status'        => ['required', 'in:published,concept,hidden'],
-            'image.*'       => ['required', 'image']
+            'title' => ['required'],
+            'category' => ['required'],
+            'description' => ['required'],
+            'thumbnail' => ['nullable', 'image'], // Make thumbnail optional for update
+            'size' => ['required', 'in:big,small'],
+            'status' => ['required', 'in:published,concept,hidden'],
+            'image.*' => ['required', 'image']
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -119,11 +120,11 @@ class ProjectController extends Controller
 
         // Update project attributes
         $project->update([
-            'title'         => $attributes['title'],
-            'category_id'   => $attributes['category'],
-            'description'   => $attributes['description'],
-            'size'          => $attributes['size'],
-            'status'        => $attributes['status']
+            'title' => $attributes['title'],
+            'category_id' => $attributes['category'],
+            'description' => $attributes['description'],
+            'size' => $attributes['size'],
+            'status' => $attributes['status']
             // Add other fields to update if needed
         ]);
 
@@ -157,6 +158,41 @@ class ProjectController extends Controller
         }
 
         return redirect(route('projects'))->with('success', 'Je project is succesvol bijgewerkt.');
+    }
+
+    public function reorderImages(Request $request, $project)
+    {
+        \Log::info('Reorder images request received', [
+            'project_id' => $project,
+            'order' => $request->input('order')
+        ]);
+
+        try {
+            // Validate the request
+            $validated = $request->validate([
+                'order' => 'required|array',
+                'order.*' => 'integer'
+            ]);
+
+            // Get the project
+            $projectModel = Project::findOrFail($project);
+
+            // Update the order in the database
+            foreach ($validated['order'] as $index => $id) {
+                \Log::info("Updating image order", ['image_id' => $id, 'new_order' => $index]);
+                $projectModel->images()->where('id', $id)->update(['order' => $index]);
+            }
+
+            return response()->json(['success' => true, 'message' => 'Images reordered successfully']);
+        } catch (\Exception $e) {
+            \Log::error('Error reordering images', [
+                'project_id' => $project,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return response()->json(['success' => false, 'message' => 'Error reordering images: ' . $e->getMessage()], 500);
+        }
     }
 
     /**

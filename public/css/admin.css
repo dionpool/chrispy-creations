@@ -23,3 +23,12 @@
 .modal-confirm i {
     font-size: 72px;
 }
+
+.cursor-move {
+    cursor: move;
+}
+
+.sortable-ghost {
+    opacity: .4;
+    background-color: #f3f3f3;
+}

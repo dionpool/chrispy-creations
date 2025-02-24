@@ -57,10 +57,12 @@
                                         <th scope="col">Actie</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="sortable-images" data-reorder-url="{{ route('project.reorder-images', $project->id) }}">
                                     @foreach($project->images as $image)
-                                        <tr>
-                                            <th scope="row">{{ $image->id }}</th>
+                                        <tr data-id="{{ $image->id }}">
+                                            <th scope="row" class="drag-handle cursor-move">
+                                                {{ $image->id }}
+                                            </th>
                                             <td>
                                                 <div class="symbol symbol-75px">
                                                     <img src="/storage/{{ $image->image }}" alt="">
@@ -139,4 +141,9 @@
             </div>
         </div>
     </form>
+
+    @section('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+        <script src="{{ asset('js/sortable-images.js') }}"></script>
+    @endsection
 </x-layouts.admin>

@@ -63,7 +63,7 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
 
     Route::get('/projecten/{id}/bewerken', [ProjectController::class, 'edit'])->name('project.edit');
     Route::put('/projecten/{id}/bewerken', [ProjectController::class, 'update'])->name('project.update');
-
+    Route::post('/projecten/{project}/reorder-images', [ProjectController::class, 'reorderImages'])->name('project.reorder-images');
     Route::delete('/projecten/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
     // Categories

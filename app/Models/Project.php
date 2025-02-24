@@ -44,6 +44,6 @@ class Project extends Model
 
     public function images()
     {
-        return $this->hasMany(ProjectImages::class);
+        return $this->hasMany(ProjectImages::class)->orderBy('order');
     }
 }
