@@ -52,7 +52,7 @@
                             <table class="table w-500px mt-5 table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col">Volgorde</th>
                                         <th scope="col">Afbeelding</th>
                                         <th scope="col">Actie</th>
                                     </tr>
@@ -61,7 +61,7 @@
                                     @foreach($project->images as $image)
                                         <tr data-id="{{ $image->id }}">
                                             <th scope="row" class="drag-handle cursor-move">
-                                                {{ $image->id }}
+                                                <x-icon variant="drag-drop" />
                                             </th>
                                             <td>
                                                 <div class="symbol symbol-75px">

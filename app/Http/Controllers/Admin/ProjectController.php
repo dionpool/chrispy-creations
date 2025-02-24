@@ -162,37 +162,21 @@ class ProjectController extends Controller
 
     public function reorderImages(Request $request, $project)
     {
-        \Log::info('Reorder images request received', [
-            'project_id' => $project,
-            'order' => $request->input('order')
+        // Validate the request
+        $validated = $request->validate([
+            'order' => 'required|array',
+            'order.*' => 'integer'
         ]);
 
-        try {
-            // Validate the request
-            $validated = $request->validate([
-                'order' => 'required|array',
-                'order.*' => 'integer'
-            ]);
+        // Get the project
+        $projectModel = Project::findOrFail($project);
 
-            // Get the project
-            $projectModel = Project::findOrFail($project);
-
-            // Update the order in the database
-            foreach ($validated['order'] as $index => $id) {
-                \Log::info("Updating image order", ['image_id' => $id, 'new_order' => $index]);
-                $projectModel->images()->where('id', $id)->update(['order' => $index]);
-            }
-
-            return response()->json(['success' => true, 'message' => 'Images reordered successfully']);
-        } catch (\Exception $e) {
-            \Log::error('Error reordering images', [
-                'project_id' => $project,
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-
-            return response()->json(['success' => false, 'message' => 'Error reordering images: ' . $e->getMessage()], 500);
+        // Update the order in the database
+        foreach ($validated['order'] as $index => $id) {
+            $projectModel->images()->where('id', $id)->update(['order' => $index]);
         }
+
+        return response()->json(['success' => true, 'message' => 'Images reordered successfully']);
     }
 
     /**

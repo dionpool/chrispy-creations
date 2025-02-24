@@ -54,3 +54,17 @@
         <span class="path2"></span>
     </i>
 @endif
+
+@if($variant === 'drag-drop')
+    <i class="ki-duotone ki-burger-menu-3 fs-2">
+        <span class="path1"></span>
+        <span class="path2"></span>
+        <span class="path3"></span>
+        <span class="path4"></span>
+        <span class="path5"></span>
+        <span class="path6"></span>
+        <span class="path7"></span>
+        <span class="path8"></span>
+        <span class="path9"></span>
+    </i>
+@endif
