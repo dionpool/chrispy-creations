@@ -1,20 +1,20 @@
 /*==================================
  * Core
  *=================================*/
-@import 'variables';
-@import "base";
-@import "fonts";
+@use 'variables';
+@use "base";
+@use "fonts";
 
 
 /*==================================
  * Main
  *=================================*/
-@import "header";
-@import "components";
+@use "header";
+@use "components";
 
 
 /*==================================
  * Pages
  *=================================*/
-@import "pages";
-@import "auth";
+@use "pages";
+@use "auth";

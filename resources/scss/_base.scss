@@ -1,3 +1,5 @@
+@use "variables";
+
 /*==================================
  * Reset
  *=================================*/
@@ -14,7 +16,7 @@ html, body {
 }
 
 body {
-    line-height: $lineHeight;
+    line-height: variables.$lineHeight;
 }
 
 a, a:focus, a:hover {
@@ -22,11 +24,11 @@ a, a:focus, a:hover {
 }
 
 a {
-    color: $black;
+    color: variables.$black;
 }
 
 a:focus, a:hover {
-    color: $black;
+    color: variables.$black;
 }
 
 img, picture, video, canvas, svg {
@@ -56,27 +58,27 @@ ul {
  * Typography
  *=================================*/
 h1 {
-    font-size: $h1Size;
+    font-size: variables.$h1Size;
 }
 
 h2 {
-    font-size: $h2Size;
+    font-size: variables.$h2Size;
 }
 
 h3 {
-    font-size: $h3Size;
+    font-size: variables.$h3Size;
 }
 
 h4 {
-    font-size: $h4Size;
+    font-size: variables.$h4Size;
 }
 
 h5 {
-    font-size: $h5Size;
+    font-size: variables.$h5Size;
 }
 
 h6 {
-    font-size: $h6Size;
+    font-size: variables.$h6Size;
 }
 
 
@@ -84,12 +86,12 @@ h6 {
  * General
  *=================================*/
 * {
-    font-family: $font;
-    font-size: $fontSize;
+    font-family: variables.$font;
+    font-size: variables.$fontSize;
 }
 
 html, body {
-    background-color: $white;
+    background-color: variables.$white;
 }
 
 .container {
@@ -98,7 +100,7 @@ html, body {
     margin: 0 auto;
 }
 
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: variables.$tablet) {
     .container {
         width: 100%;
         max-width: 786px;
@@ -106,7 +108,7 @@ html, body {
     }
 }
 
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: variables.$desktop) {
     .container {
         width: 100%;
         max-width: 1200px;

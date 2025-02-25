@@ -1,3 +1,5 @@
+@use "variables";
+
 /*==================================
  * Layout
  *=================================*/
@@ -17,9 +19,9 @@
             flex-direction: column;
             align-items: stretch;
             padding: 2rem;
-            border-radius: $radius;
+            border-radius: variables.$radius;
             margin: 0 15px;
-            background-color: $white;
+            background-color: variables.$white;
             justify-content: center;
 
             .form-header {
@@ -27,7 +29,7 @@
                 margin-bottom: 1.5rem;
 
                 h1 {
-                    color: $black;
+                    color: variables.$black;
                     font-size: 22px;
                     font-weight: 700;
                 }
@@ -55,10 +57,10 @@
                     line-height: 1.5;
                     color: #777;
                     border: 1px solid #e1e3ea;
-                    border-radius: $radius;
+                    border-radius: variables.$radius;
 
                     &:focus {
-                        outline: 1px solid $primaryColor;
+                        outline: 1px solid variables.$primaryColor;
                     }
                 }
             }
@@ -70,7 +72,7 @@
                 align-items: center;
 
                 a {
-                    color: $primaryColor;
+                    color: variables.$primaryColor;
                     transition: color .2s ease;
                     font-size: 14px;
                     font-weight: 400;
@@ -83,7 +85,7 @@
                 margin-bottom: 0;
 
                 a {
-                    color: $primaryColor;
+                    color: variables.$primaryColor;
                     font-size: 14px;
                     font-weight: 400;
 
@@ -100,7 +102,7 @@
 /*==================================
  * Layout: Responsive - Tablet
  *=================================*/
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: variables.$tablet) {
     .guest-layout {
         .app-row {
             justify-content: center;
@@ -117,7 +119,7 @@
 /*==================================
  * Layout: Responsive - Desktop
  *=================================*/
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: variables.$desktop) {
     .guest-layout {
         .app-root {
             display: flex;
@@ -154,7 +156,7 @@
                                     margin-bottom: 2.75rem;
 
                                     h1 {
-                                        color: $black;
+                                        color: variables.$black;
                                         font-size: 22px;
                                         font-weight: 700;
                                         margin-bottom: .75rem;
@@ -179,10 +181,10 @@
                                         background-clip: padding-box;
                                         border: 1px solid #e1e3ea;
                                         appearance: none;
-                                        border-radius: $radius;
+                                        border-radius: variables.$radius;
 
                                         &:focus {
-                                            outline: 1px solid $primaryColor;
+                                            outline: 1px solid variables.$primaryColor;
                                         }
                                     }
                                 }
@@ -203,7 +205,7 @@
                                     margin-bottom: 0;
 
                                     a {
-                                        color: $primaryColor;
+                                        color: variables.$primaryColor;
                                         font-size: 14px;
                                         font-weight: 400;
 

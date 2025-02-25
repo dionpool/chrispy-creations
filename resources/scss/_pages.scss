@@ -1,3 +1,5 @@
+@use "variables";
+
 /*==================================
  * Homepage
  *=================================*/
@@ -23,7 +25,7 @@
 /*==================================
  * Homepage: Responsive - Tablet
  *=================================*/
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: variables.$tablet) {
     .grid-container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -48,7 +50,7 @@
 /*==================================
  * Homepage: Responsive - Desktop
  *=================================*/
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: variables.$desktop) {
     .grid-container {
         grid-template-columns: repeat(5, 1fr);
         grid-auto-rows: minmax(0, 1fr);
@@ -68,18 +70,18 @@
                 text-align: center;
                 width: 100%;
                 height: 100%;
-                background-color: $primaryColor;
+                background-color: variables.$primaryColor;
                 opacity: 0;
                 transition: opacity .3s ease;
                 padding: 50px;
 
                 h2, span {
-                    color: $white;
+                    color: variables.$white;
                     position: relative;
                 }
 
                 hr {
-                    border: 1px solid $white;
+                    border: 1px solid variables.$white;
                     width: 50px;
                     opacity: 1;
                     margin: 15px 0;
@@ -88,7 +90,7 @@
 
             &:hover .overlay {
                 opacity: 1;
-                background-color: rgba($primaryColor, .8);
+                background-color: rgba(variables.$primaryColor, .8);
             }
         }
     }
@@ -110,7 +112,7 @@
 /*==================================
  * About: Responsive - Tablet
  *=================================*/
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: variables.$tablet) {
     .about-me {
         display: flex;
         justify-content: center;
@@ -127,7 +129,7 @@
 /*==================================
  * About: Responsive - Desktop
  *=================================*/
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: variables.$desktop) {
     .about-me {
         display: flex;
         justify-content: center;
@@ -175,7 +177,7 @@
         }
 
         hr {
-            border: 1px solid $black;
+            border: 1px solid variables.$black;
             width: 25%;
             margin: 10px auto;
         }
@@ -199,11 +201,11 @@
 
         i {
             font-size: 32px;
-            color: $gray;
+            color: variables.$gray;
         }
 
         &:hover i {
-            color: $primaryColor;
+            color: variables.$primaryColor;
         }
     }
 }
@@ -226,7 +228,7 @@
 /*==================================
  * Single project: Responsive - Tablet
  *=================================*/
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: variables.$tablet) {
     .project-header {
         .info {
             position: absolute;
@@ -235,8 +237,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: $black;
-            background-color: $gray;
+            color: variables.$black;
+            background-color: variables.$gray;
             transition: .2s ease;
 
             .info-trigger {
@@ -249,10 +251,10 @@
             }
 
             &:hover {
-                background-color: $primaryColor;
+                background-color: variables.$primaryColor;
 
                 i {
-                    color: $white;
+                    color: variables.$white;
                 }
             }
         }
@@ -269,7 +271,7 @@
 
             i {
                 font-size: 38px;
-                color: $gray;
+                color: variables.$gray;
             }
         }
     }
@@ -287,7 +289,6 @@
  *=================================*/
 .coming-soon {
     height: calc(100vh - 87px);
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;

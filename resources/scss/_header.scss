@@ -1,3 +1,5 @@
+@use "variables";
+
 /*==================================
  * Top bar
  *=================================*/
@@ -31,7 +33,7 @@
     display: flex;
     align-items: center;
     padding: 0 25px 0 0;
-    background-color: $white;
+    background-color: variables.$white;
     border-bottom: 1px solid #ddd;
 
     .logo {
@@ -58,7 +60,7 @@
         position: absolute;
         top: 121px;
         left: 0;
-        background-color: $white;
+        background-color: variables.$white;
         width: 100%;
         box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
         border-bottom: 1px solid #ddd;
@@ -76,8 +78,8 @@
                 display: block;
 
                 &:active, &.active {
-                    background-color: $primaryColor;
-                    color: $white;
+                    background-color: variables.$primaryColor;
+                    color: variables.$white;
                 }
             }
         }
@@ -97,7 +99,7 @@
     .top-bar-content {
         width: 1200px;
         margin: 0 auto;
-        background-color: $white;
+        background-color: variables.$white;
 
         .account-navigation {
             display: flex;
@@ -108,7 +110,7 @@
                     font-size: 14px;
 
                     &:hover {
-                        color: $primaryColor;
+                        color: variables.$primaryColor;
                     }
                 }
 
@@ -120,7 +122,7 @@
                     cursor: pointer;
 
                     &:hover {
-                        color: $primaryColor;
+                        color: variables.$primaryColor;
                     }
                 }
             }
@@ -157,7 +159,7 @@
                 a {
                     font-size: 14px;
                     text-transform: uppercase;
-                    color: $black;
+                    color: variables.$black;
 
                     &:not(.logo):active:after,
                     &:not(.logo).active:after,
@@ -168,7 +170,7 @@
                         left: 50%;
                         width: 50%;
                         height: 2px;
-                        background-color: $black;
+                        background-color: variables.$black;
                         transform: translateX(-50%);
                         transition: opacity .3s, transform .3s;
                     }
