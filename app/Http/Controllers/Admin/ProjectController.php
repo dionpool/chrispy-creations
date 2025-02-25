@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
@@ -146,7 +147,7 @@ class ProjectController extends Controller
             }
         }
 
-// Check if the project already has images
+        // Check if the project already has images
         if ($project->images->count() > 0) {
             // If it does, update the existing images
             foreach ($projectImages as $newImage) {
@@ -160,6 +161,9 @@ class ProjectController extends Controller
         return redirect(route('projects'))->with('success', 'Je project is succesvol bijgewerkt.');
     }
 
+    /**
+     * Reorder images in the project carousel.
+     */
     public function reorderImages(Request $request, $project)
     {
         // Validate the request
@@ -177,6 +181,23 @@ class ProjectController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Images reordered successfully']);
+    }
+
+    /**
+     * Remove a specific image in the project carousel.
+     */
+    public function deleteImage(Project $project, $imageId)
+    {
+        $image = $project->images()->findOrFail($imageId);
+        $imagePath = $image->image;
+
+        $image->delete();
+
+        if ($imagePath && Storage::disk('public')->exists($imagePath)) {
+            Storage::disk('public')->delete($imagePath);
+        }
+
+        return response()->json(['success' => true]);
     }
 
     /**
