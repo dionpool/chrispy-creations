@@ -58,28 +58,26 @@
                                     </tr>
                                 </thead>
                                 <tbody id="sortable-images" data-reorder-url="{{ route('project.reorder-images', $project->id) }}">
-                                @for ($i = 0; $i < count($project->images); $i++)
-                                    @php $image = $project->images[$i]; @endphp
-                                    <tr data-id="{{ $image->id }}">
-                                        <th scope="row" class="drag-handle cursor-move">
-                                            <x-icon variant="drag-drop" />
-                                        </th>
-                                        <td>
-                                            <div class="symbol symbol-75px">
-                                                <img src="/storage/{{ $image->image }}" alt="">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-sm btn-danger delete-image-btn"
-                                                    data-project-id="{{ $project->id }}"
-                                                    data-image-id="{{ $image->id }}">
-                                                Verwijder
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endfor
+                                    @foreach($project->images as $image)
+                                        <tr data-id="{{ $image->id }}">
+                                            <th scope="row" class="drag-handle cursor-move">
+                                                <x-icon variant="drag-drop" />
+                                            </th>
+                                            <td>
+                                                <div class="symbol symbol-75px">
+                                                    <img src="/storage/{{ $image->image }}" alt="">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-danger delete-image-btn"
+                                                        data-project-id="{{ $project->id }}"
+                                                        data-image-id="{{ $image->id }}">
+                                                    Verwijder
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
-
                             </table>
                         @endif
 
