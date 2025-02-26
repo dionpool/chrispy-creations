@@ -34,6 +34,7 @@ Route::middleware(['guest'])->group(function () {
 
     // Login
     Route::get('/inloggen', [LoginController::class, 'index'])->name('login');
+    Route::get('/dashboard', [LoginController::class, 'index'])->name('login');
     Route::post('/inloggen', [LoginController::class, 'store'])->name('login.store');
 });
 
