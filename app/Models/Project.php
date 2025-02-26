@@ -20,7 +20,8 @@ class Project extends Model
         'size',
         'created_at',
         'updated_at',
-        'status'
+        'status',
+        'order'
     ];
 
     public function author()

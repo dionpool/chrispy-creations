@@ -10,9 +10,8 @@ class PageController extends Controller
     public function index()
     {
         return view('home', [
-//            'projects' => Project::all()->sortByDesc('created_at')
             'projects' => Project::where('status', 'published')
-                ->orderBy('created_at', 'desc')
+                ->orderBy('order')
                 ->get()
         ]);
     }

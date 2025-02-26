@@ -18,7 +18,7 @@ class ProjectController extends Controller
     public function index()
     {
         return view('admin.projects.index', [
-            'projects' => Project::all()->sortByDesc('created_at'),
+            'projects' => Project::orderBy('order')->get(),
             'categories' => Category::all()
         ]);
     }
@@ -198,6 +198,25 @@ class ProjectController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+    /**
+     * Reorder projects.
+     */
+    public function reorderProjects(Request $request)
+    {
+        // Validate the request
+        $validated = $request->validate([
+            'order' => 'required|array',
+            'order.*' => 'integer'
+        ]);
+
+        // Update the order in the database
+        foreach ($validated['order'] as $index => $id) {
+            Project::where('id', $id)->update(['order' => $index]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Projects reordered successfully']);
     }
 
     /**

@@ -57,6 +57,7 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
 
     // Projects
     Route::get('/projecten', [ProjectController::class, 'index'])->name('projects');
+    Route::post('/projecten/reorder-projects', [ProjectController::class, 'reorderProjects'])->name('project.reorder-projects');
 
     Route::get('/nieuw-project', [ProjectController::class, 'create'])->name('project.new');
     Route::post('/nieuw-project', [ProjectController::class, 'store'])->name('project.store');

@@ -46,39 +46,41 @@
 
                     <div class="mb-7">
                         <label for="images" class="mb-1">Carousel afbeeldingen:</label>
-                        <input type="file" name="images[]" id="images" class="form-control" multiple>
+                        <input type="file" name="images[]" id="images" class="form-control mb-5" multiple>
 
                         @if($project->images)
-                            <table class="table w-500px mt-5 table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Volgorde</th>
-                                        <th scope="col">Afbeelding</th>
-                                        <th scope="col">Actie</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="sortable-images" data-reorder-url="{{ route('project.reorder-images', $project->id) }}">
-                                    @foreach($project->images as $image)
-                                        <tr data-id="{{ $image->id }}">
-                                            <th scope="row" class="drag-handle cursor-move">
-                                                <x-icon variant="drag-drop" />
-                                            </th>
-                                            <td>
-                                                <div class="symbol symbol-75px">
-                                                    <img src="/storage/{{ $image->image }}" alt="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-danger delete-image-btn"
-                                                        data-project-id="{{ $project->id }}"
-                                                        data-image-id="{{ $image->id }}">
-                                                    Verwijder
-                                                </button>
-                                            </td>
+                            <div class="table-responsive">
+                                <table class="table table-row-bordered table-row-dashed gy-4 align-middle">
+                                    <thead class="fs-7 text-gray-400 text-uppercase fw-bold">
+                                        <tr>
+                                            <th scope="col">Volgorde</th>
+                                            <th scope="col">Afbeelding</th>
+                                            <th scope="col">Actie</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody id="sortable-images" data-reorder-url="{{ route('project.reorder-images', $project->id) }}">
+                                        @foreach($project->images as $image)
+                                            <tr data-id="{{ $image->id }}">
+                                                <td class="drag-handle cursor-move">
+                                                    <x-icon variant="drag-drop" />
+                                                </td>
+                                                <td>
+                                                    <div class="symbol symbol-75px">
+                                                        <img src="/storage/{{ $image->image }}" alt="">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-danger delete-image-btn"
+                                                            data-project-id="{{ $project->id }}"
+                                                            data-image-id="{{ $image->id }}">
+                                                        Verwijder
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         @endif
 
                         @error('images[]') {{ $message }} @enderror

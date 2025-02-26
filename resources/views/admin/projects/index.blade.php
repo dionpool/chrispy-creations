@@ -21,19 +21,25 @@
             </select>
         </x-slot>
 
-        <x-admin.table>
-            <x-slot name="thead">
-                <th>Titel</th>
-                <th>Slug</th>
-                <th>Categorie</th>
-                <th>Omschrijving</th>
-                <th>Status</th>
-                <th>Actie</th>
-            </x-slot>
-
-            <x-slot name="tbody">
-                @foreach($projects as $project)
+        <div class="table-responsive">
+            <table class="table table-row-bordered table-row-dashed gy-4 align-middle">
+                <thead class="fs-7 text-gray-400 text-uppercase fw-bold">
                     <tr>
+                        <th scope="col">Volgorde</th>
+                        <th scope="col">Titel</th>
+                        <th scope="col">Slug</th>
+                        <th scope="col">Categorie</th>
+                        <th scope="col">Omschrijving</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Acties</th>
+                    </tr>
+                </thead>
+                <tbody id="sortable-projects" data-reorder-url="{{ route('project.reorder-projects') }}">
+                @foreach($projects as $project)
+                    <tr data-id="{{ $project->id }}"> <!-- Add data-id here -->
+                        <td class="drag-handle cursor-move">
+                            <x-icon variant="drag-drop" />
+                        </td>
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="me-5 position-relative">
@@ -46,34 +52,25 @@
                         </td>
                         <td>{{ $project->slug }}</td>
                         <td>{{ $project->category->title }}</td>
-                        <td class="excerpt">
-                            {{ $project->description }}
-                        </td>
+                        <td class="excerpt">{{ $project->description }}</td>
                         <td>
                             @if($project->status === 'published')
                                 <x-badge variant="published">{{ $project->status }}</x-badge>
-                            @endif
-
-                            @if($project->status === 'concept')
+                            @elseif($project->status === 'concept')
                                 <x-badge variant="concept">{{ $project->status }}</x-badge>
-                            @endif
-
-                            @if($project->status === 'hidden')
+                            @elseif($project->status === 'hidden')
                                 <x-badge variant="hidden">{{ $project->status }}</x-badge>
                             @endif
                         </td>
                         <td>
                             <x-dropdown>
                                 <x-slot name="trigger">Acties</x-slot>
-
                                 <x-dropdown-item>
                                     <a href="{{ route('project.single', $project->slug) }}" class="menu-link px-3" target="_blank">Bekijken</a>
                                 </x-dropdown-item>
-
                                 <x-dropdown-item>
                                     <a href="{{ route('project.edit', $project->id) }}" class="menu-link px-3">Bewerken</a>
                                 </x-dropdown-item>
-
                                 <x-dropdown-item>
                                     <x-button variant="admin-modal" target="deleteProject{{ $project->id }}">Verwijderen</x-button>
                                 </x-dropdown-item>
@@ -94,13 +91,18 @@
                             <form method="POST" action="{{ route('project.destroy', $project->id) }}">
                                 @csrf
                                 @method('DELETE')
-
                                 <x-button variant="danger" class="btn-sm">Verwijderen</x-button>
                             </form>
                         </x-slot>
                     </x-admin.modal>
                 @endforeach
-            </x-slot>
-        </x-admin.table>
+                </tbody>
+            </table>
+        </div>
     </x-admin.card>
+
+        @section('scripts')
+            <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+            <script src="{{ asset('js/sortable-projects.js') }}"></script>
+        @endsection
 </x-layouts.admin>
