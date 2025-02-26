@@ -126,7 +126,6 @@ class ProjectController extends Controller
             'description' => $attributes['description'],
             'size' => $attributes['size'],
             'status' => $attributes['status']
-            // Add other fields to update if needed
         ]);
 
         // Handle thumbnail update if provided

@@ -2,7 +2,7 @@
     <div id="kt_app_header_container" class="app-container container-fluid d-flex align-items-stretch justify-content-between">
         <!-- Logo -->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="{{ route('dashboard') }}" class="d-lg-none">
+            <a href="{{ route('projects') }}" class="d-lg-none">
                 <img src="{{ asset('images/logo.webp') }}" alt="{{ config('app.name') }} logo" class="h-30px">
             </a>
         </div>

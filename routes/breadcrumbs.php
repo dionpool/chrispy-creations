@@ -4,11 +4,6 @@
     use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
-// Dashboard
-Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
-    $trail->push('Dashboard', route('dashboard'));
-});
-
 /*
 |--------------------------------------------------------------------------
 | Projects
@@ -16,7 +11,6 @@ Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
 */
 // Dashboard > Projects
 Breadcrumbs::for('projects', function (BreadcrumbTrail $trail) {
-    $trail->parent('dashboard');
     $trail->push('Projecten', route('projects'));
 });
 
@@ -34,7 +28,6 @@ Breadcrumbs::for('project.new', function (BreadcrumbTrail $trail) {
 */
 // Dashboard > Categories
 Breadcrumbs::for('categories', function (BreadcrumbTrail $trail) {
-    $trail->parent('dashboard');
     $trail->push('Categorieën', route('categories'));
 });
 

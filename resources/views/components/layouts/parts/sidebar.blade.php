@@ -3,7 +3,7 @@
      data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start"
      data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <a href="{{ route('dashboard') }}">
+        <a href="{{ route('projects') }}">
             <span class="text-white fw-semibold fs-4">Chrispy Creations</span>
         </a>
         <div id="kt_app_sidebar_toggle"
@@ -21,10 +21,6 @@
              data-kt-scroll-save-state="true">
             <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu"
                  data-kt-menu="true" data-kt-menu-expand="false">
-                <x-layouts.parts.sidebar-item route="dashboard" :active="request()->routeIs('dashboard')" icon="dashboard">
-                    Dashboard
-                </x-layouts.parts.sidebar-item>
-
                 <x-layouts.parts.sidebar-title>Projecten</x-layouts.parts.sidebar-title>
                 <x-layouts.parts.sidebar-item route="projects" :active="request()->routeIs('projects')" icon="overview">
                     Overzicht

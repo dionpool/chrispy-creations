@@ -52,9 +52,6 @@ Route::middleware(['auth'])->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'role:admin,editor'])->group(function () {
-    // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
     // Projects
     Route::get('/projecten', [ProjectController::class, 'index'])->name('projects');
     Route::post('/projecten/reorder-projects', [ProjectController::class, 'reorderProjects'])->name('project.reorder-projects');

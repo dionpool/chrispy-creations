@@ -6,7 +6,7 @@
                     <span>Welkom, {{ Auth::user()->name }}</span>
                     <ul class="account-navigation">
                         @canany(['admin', 'editor'])
-                            <x-layouts.parts.nav-link :route="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            <x-layouts.parts.nav-link :route="route('projects')" :active="request()->routeIs('projects')">
                                 Dashboard
                             </x-layouts.parts.nav-link>
                         @endcanany
