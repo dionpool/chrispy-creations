@@ -157,7 +157,7 @@ class ProjectController extends Controller
             $project->images()->createMany($projectImages);
         }
 
-        return redirect(route('projects'))->with('success', 'Je project is succesvol bijgewerkt.');
+        return back()->with('success', 'Je project is succesvol bijgewerkt.');
     }
 
     /**
