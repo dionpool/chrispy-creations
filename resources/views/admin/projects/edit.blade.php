@@ -3,15 +3,29 @@
         {{ Breadcrumbs::render('projects') }}
     @endsection
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="alert alert-success mb-0">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <x-admin.card>
+        <form action="{{ route('clear.cache') }}" method="POST">
+            @csrf
+
+            <x-button variant="primary">Leeg cache</x-button>
+        </form>
+    </x-admin.card>
 
     <form method="POST" action="{{ route('project.update', $project->id) }}" enctype="multipart/form-data">
         @csrf

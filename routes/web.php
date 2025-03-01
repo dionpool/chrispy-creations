@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+//use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CacheController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -78,6 +78,9 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     Route::put('/categorieen/{id}/bewerken', [CategoryController::class, 'update'])->name('category.update');
 
     Route::delete('/categorieen/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+    // Cache
+    Route::post('/clear-cache', [CacheController::class, 'clearCache'])->name('clear.cache');
 });
 
 /*
