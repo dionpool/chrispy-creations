@@ -164,5 +164,6 @@
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <script src="{{ asset('js/sortable-images.js') }}"></script>
         <script src="{{ asset('js/remove-images.js') }}"></script>
+        <x-layouts.scripts.tinymce-config />
     @endsection
 </x-layouts.admin>

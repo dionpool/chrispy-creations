@@ -103,4 +103,8 @@
             </div>
         </div>
     </form>
+
+    @section('scripts')
+        <x-layouts.scripts.tinymce-config />
+    @endsection
 </x-layouts.admin>

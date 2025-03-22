@@ -4,7 +4,7 @@
             <i class="fa-solid fa-close"></i>
         </button>
         <div class="description">
-            <p>{{ $slot }}</p>
+            {{ $slot }}
         </div>
     </div>
 </div>

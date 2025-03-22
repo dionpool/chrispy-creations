@@ -23,9 +23,9 @@
         <x-carousel :project="$project" />
 
         <section class="description">
-            <p>{{ $project->description }}</p>
+            <p>{!! $project->description !!}</p>
         </section>
     </main>
 
-    <x-modal>{{ $project->description }}</x-modal>
+    <x-modal>{!! $project->description !!}</x-modal>
 </x-layouts.app>
