@@ -55,6 +55,9 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     // Projects
     Route::get('/projecten', [ProjectController::class, 'index'])->name('projects');
+    Route::prefix('en')->group(function () {
+        Route::get('/projecten', [ProjectController::class, 'index'])->name('projects.en');
+    });
     Route::post('/projecten/reorder-projects', [ProjectController::class, 'reorderProjects'])->name('project.reorder-projects');
 
     Route::get('/nieuw-project', [ProjectController::class, 'create'])->name('project.new');
@@ -92,5 +95,17 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/over', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/store', [PageController::class, 'shop'])->name('store');
-
 Route::get('/projects/{project:slug}', [ProjectController::class, 'show'])->name('project.single');
+
+/*
+|--------------------------------------------------------------------------
+| Pages for All Users in English
+|--------------------------------------------------------------------------
+*/
+Route::prefix('en')->group(function () {
+    Route::get('/', [PageController::class, 'index'])->name('home.en');
+    Route::get('/about', [PageController::class, 'about'])->name('about.en');
+    Route::get('/contact', [PageController::class, 'contact'])->name('contact.en');
+    Route::get('/store', [PageController::class, 'shop'])->name('store.en');
+    Route::get('/projects/{project:slug}', [ProjectController::class, 'show'])->name('project.single.en');
+});
