@@ -92,6 +92,24 @@
 
 
 /*==================================
+ * Language switcher
+ *=================================*/
+.language-switcher {
+    position: absolute;
+    left: 25px;
+
+    @media screen and (min-width: 1024px) {
+        display: none;
+    }
+
+    @media screen and (min-width: 1200px) {
+        display: block;
+        position: unset;
+    }
+}
+
+
+/*==================================
  * Responsive: Desktop
  *=================================*/
 @media screen and (min-width: 1024px) {
@@ -175,7 +193,7 @@
                         transition: opacity .3s, transform .3s;
                     }
                 }
-                
+
                 .logo {
                     display: block;
                 }

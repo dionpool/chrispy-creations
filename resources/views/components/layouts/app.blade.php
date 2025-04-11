@@ -18,11 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    @if(request()->is('projects/*'))
-
-    @else
-        <x-layouts.parts.header />
-    @endif
+    <x-layouts.parts.header />
 
     {{ $slot }}
 
